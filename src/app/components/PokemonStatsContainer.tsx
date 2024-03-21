@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react"
 
-export default function PokemonStatsContainer({ stat }: any) {
+interface Props {
+    stat: {
+        stat: {
+            name: string
+        },
+        base_stat: number
+    }
+}
+
+export default function PokemonStatsContainer({ stat }: Props) {
     const [color, setColor] = useState("")
 
     const getColor = (statName: string) => {

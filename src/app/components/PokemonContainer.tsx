@@ -17,7 +17,30 @@ interface Pokemon {
     }]
 }
 
-export default function PokemonContainer({ pokemon, setSelectedPokemon }: any) {
+interface Props {
+    setSelectedPokemon: any,
+    pokemon : {
+        name: string,
+        sprites: {
+            front_default: string
+        },
+        stats: [{
+            base_stat: number,
+            stat: {
+                name: string,
+            }
+        }]
+    }
+}
+
+interface Stat {
+    stat: {
+        name: string
+    },
+    base_stat: number
+}
+
+export default function PokemonContainer({ pokemon, setSelectedPokemon }: Props) {
     const [onePokemon, setOnePokemon] = useState<Pokemon | undefined>(undefined)
 
     const getOnePokemon = async () => {
@@ -37,7 +60,7 @@ export default function PokemonContainer({ pokemon, setSelectedPokemon }: any) {
                     <p className="text-xl font-extralight mb-4">{onePokemon?.name?.slice(0, 1).toUpperCase() + onePokemon?.name?.slice(1)}</p>
                 </div>
                 <div className="grid grid-cols-3 mx-auto gap-2 font-light text-sm">
-                    {onePokemon?.stats?.map((stat: {}, index: number) => {
+                    {onePokemon?.stats?.map((stat: Stat, index: number) => {
                         return <PokemonStatsContainer key={index} stat={stat} />
                     })}
                 </div>
