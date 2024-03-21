@@ -4,8 +4,6 @@ import StatContainer from "./StatContainer"
 
 export default function SelectedContainer({ selectedPokemon }: any) {
 
-    console.log(selectedPokemon.abilities)
-
     return (
         <>
             <div className={`border-2 rounded-tl-xl rounded-br-xl h-fit w-[90%] mx-auto mansalva-regular text-center flex-col p-4 bg-neutral-900 border-orange-300 ${selectedPokemon.name ? "flex" : "hidden"}`}>
@@ -37,7 +35,7 @@ export default function SelectedContainer({ selectedPokemon }: any) {
                 </section>
                 <section>
                     <h1 className="text-left text-xl my-2">Starter Abilities for {selectedPokemon?.name?.slice(0, 1).toUpperCase() + selectedPokemon?.name?.slice(1)}:</h1>
-                    <div className="w-full h-40 flex gap-1 border border-neutral-800 bg-black p-2 rounded-md">
+                    <div className="w-full h-40 flex gap-2 border border-neutral-800 bg-black p-2 rounded-md">
                         {selectedPokemon.abilities?.map((ability: { ability: { url: string } }, index: number) => {
                             return <AbilitiesContainer key={index} ability={ability} />
                         })}
