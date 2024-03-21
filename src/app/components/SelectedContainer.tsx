@@ -25,7 +25,7 @@ export default function SelectedContainer({ selectedPokemon }: any) {
                     </div>
                 </section>
                 <section className="flex">
-                    <div className="w-full h-40 overflow-y-auto grid gap-1 grid-cols-6 border border-neutral-800 bg-black p-2 rounded-md">
+                    <div className="w-full h-40 overflow-y-auto grid gap-1 grid-cols-5 border border-neutral-800 bg-black p-2 rounded-md">
                         {selectedPokemon.moves?.map((move: { move: { url: string } }, index: number) => {
                             return <MovesContainer key={index} move={move} />
                         })}
