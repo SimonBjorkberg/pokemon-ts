@@ -46,7 +46,7 @@ export default function PokemonContainer({ pokemon, setSelectedPokemon, selected
 
     return (
         <>
-            {onePokemon && <main className={`border bg-neutral-950 border-neutral-700 border-y-orange-300 bg-gradient-to-t w-40 flex flex-col rounded-xl hover:cursor-pointer transition-all duration-200 mansalva-regular ${selectedPokemon.name === onePokemon.name ? "from-neutral-800 to-neutral-700 border-orange-300" : "hover:scale-105"}`} onClick={() => setSelectedPokemon(onePokemon)}>
+            {onePokemon && <main className={`border bg-neutral-950 border-neutral-700 border-y-orange-300 bg-gradient-to-t w-40 flex flex-col rounded-xl hover:cursor-pointer transition-all duration-200 mansalva-regular h-fit max-h-fit ${selectedPokemon.name === onePokemon.name ? "from-neutral-800 to-neutral-700 border-orange-300" : "hover:scale-105"}`} onClick={() => setSelectedPokemon(onePokemon)}>
                 <div className="flex flex-col">
                     <div className="w-fit rounded-tl-xl px-4 rounded-br-xl bg-orange-300 text-black">#{onePokemon.id}</div>
                     <img src={onePokemon?.sprites?.front_default} alt="" className="h-32 w-32 self-center my-3" />

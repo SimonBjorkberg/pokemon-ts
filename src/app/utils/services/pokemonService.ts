@@ -14,6 +14,9 @@ class PokemonService {
     getTwenty = (offset: number) => {
         return this.api.get(`/pokemon?offset=${offset}&limit=20`)
     }
+    getAll = () => {
+        return this.api.get('/pokemon?offset=0&limit=1302')
+    }
 }
 
 const pokemonService = new PokemonService();

@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react"
 
-interface Props {
-    searchData: [
-        {
-            name: string
-        }
-    ]
-    searchResults: any,
-    setSearchResults: any
+interface Pokemon {
+    name: string
 }
 
-export default function Searchbar({ searchData, setSearchResults }: Props) {
+export default function Searchbar({ searchData, setSearchResults }: any) {
     const [searchValue, setSearchValue] = useState("")
 
     const filterData = () => {
-        const result = searchData.filter((pokemon) => {
+        const result = searchData.filter((pokemon: Pokemon) => {
             return pokemon.name.includes(searchValue.toLowerCase())
         })
         setSearchResults(result)
     }
 
     useEffect(() => {
-        filterData()
+        if (searchValue === "") {
+            setSearchResults([])
+        }
+        else {
+            filterData()
+        }
     }, [searchValue])
 
     return (
