@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import PokemonStatsContainer from "./PokemonStatsContainer"
 import pokemonService from "../utils/services/pokemonService"
 
 interface Pokemon {
     name: string,
+    id: number,
     sprites: {
         front_default: string
     },
@@ -15,11 +15,21 @@ interface Pokemon {
             name: string,
         }
     }]
+    types: [
+        {
+            type: {
+                name: string
+            }
+        }
+    ]
 }
 
 interface Props {
     setSelectedPokemon: any,
-    pokemon : {
+    selectedPokemon: {
+        name: string
+    }
+    pokemon: {
         name: string,
         sprites: {
             front_default: string
@@ -33,14 +43,7 @@ interface Props {
     }
 }
 
-interface Stat {
-    stat: {
-        name: string
-    },
-    base_stat: number
-}
-
-export default function PokemonContainer({ pokemon, setSelectedPokemon }: Props) {
+export default function PokemonContainer({ pokemon, setSelectedPokemon, selectedPokemon }: Props) {
     const [onePokemon, setOnePokemon] = useState<Pokemon | undefined>(undefined)
 
     const getOnePokemon = async () => {
@@ -54,15 +57,16 @@ export default function PokemonContainer({ pokemon, setSelectedPokemon }: Props)
 
     return (
         <>
-            {onePokemon && <main className="text-white border border-neutral-700 bg-neutral-900 w-52 flex flex-col relative p-5 pb-10 rounded-md mt-10 hover:cursor-pointer hover:bg-neutral-950 hover:scale-105 transition-all duration-200" onClick={() => setSelectedPokemon(onePokemon)}>
-                <img src={onePokemon?.sprites?.front_default} alt="" className="h-20 w-20 absolute self-center top-[-50px]" />
-                <div className="flex justify-center">
-                    <p className="text-xl font-extralight mb-4">{onePokemon?.name?.slice(0, 1).toUpperCase() + onePokemon?.name?.slice(1)}</p>
-                </div>
-                <div className="grid grid-cols-3 mx-auto gap-2 font-light text-sm">
-                    {onePokemon?.stats?.map((stat: Stat, index: number) => {
-                        return <PokemonStatsContainer key={index} stat={stat} />
-                    })}
+            {onePokemon && <main className={`border bg-neutral-950 border-neutral-700 border-y-orange-300 bg-gradient-to-t w-40 flex flex-col rounded-xl hover:cursor-pointer transition-all duration-200 mansalva-regular ${selectedPokemon.name === onePokemon.name ? "from-neutral-800 to-neutral-700 border-orange-300" : "hover:scale-105"}`} onClick={() => setSelectedPokemon(onePokemon)}>
+                <div className="flex flex-col">
+                    <div className="w-fit rounded-tl-xl px-4 rounded-br-xl bg-orange-300 text-black">#{onePokemon.id}</div>
+                    <img src={onePokemon?.sprites?.front_default} alt="" className="h-32 w-32 self-center my-3" />
+                    <p className="font-extralight text-2xl self-center">{onePokemon?.name?.slice(0, 1).toUpperCase() + onePokemon?.name?.slice(1)}</p>
+                    <div className={`flex ${onePokemon.types.length > 1 ? "justify-between" : "justify-center"} w-3/4 mx-auto my-5`}>
+                        {onePokemon.types.map((type, index) => {
+                            return <p key={index} className="text-orange-300">{type.type.name}</p>
+                        })}
+                    </div>
                 </div>
             </main>}
         </>
