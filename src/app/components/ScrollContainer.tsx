@@ -44,7 +44,7 @@ export default function ScrollContainer({ setSelectedPokemon, selectedPokemon }:
 
     return (
         <>
-            {data && <div ref={scrollContainer} className={`grid grid-cols-4 my-auto gap-4 overflow-y-scroll h-[90%] px-4 py-4 transition-all duration-200`}>
+            {data && <div ref={scrollContainer} className={`grid grid-cols-5 my-auto gap-4 overflow-y-scroll h-[90%] px-4 py-4 transition-all duration-200`}>
                 {data.map((pokemon: any, index: number) => {
                     return <PokemonContainer key={index} pokemon={pokemon} setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} />
                 })}

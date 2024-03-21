@@ -9,7 +9,7 @@ interface Selected {
 }
 
 export default function Home() {
-  const [selectedPokemon, setSelectedPokemon] = useState<Selected | {}>({})
+  const [selectedPokemon, setSelectedPokemon] = useState<Selected | undefined>(undefined)
 
   return (
     <main className={`h-screen flex`}>
@@ -17,7 +17,9 @@ export default function Home() {
         <div className="h-screen flex mx-auto">
           <ScrollContainer setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} />
         </div>
-        {selectedPokemon && <SelectedContainer selectedPokemon={selectedPokemon} />}
+        <div className="w-1/2 h-[90%] my-auto flex">
+          {selectedPokemon && <SelectedContainer selectedPokemon={selectedPokemon} />}
+        </div>
       </div>
     </main>
   );

@@ -7,15 +7,17 @@ class PokemonService {
             baseURL: "https://pokeapi.co/api/v2"
         })
     }
-
     getOnePokemon = (url: string) => {
         return this.api.get(url)
     }
     getTwenty = (offset: number) => {
         return this.api.get(`/pokemon?offset=${offset}&limit=20`)
     }
-    getAll = () => {
+    getAllPokemon = () => {
         return this.api.get('/pokemon?offset=0&limit=1302')
+    }
+    getOneMove = (url: string) => {
+        return this.api.get(url)
     }
 }
 
