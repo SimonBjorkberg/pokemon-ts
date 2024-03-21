@@ -19,6 +19,9 @@ class PokemonService {
     getOneMove = (url: string) => {
         return this.api.get(url)
     }
+    getOneAbility = (url: string) => {
+        return this.api.get(url)
+    }
 }
 
 const pokemonService = new PokemonService();
