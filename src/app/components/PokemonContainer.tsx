@@ -23,23 +23,12 @@ interface Pokemon {
         }
     ]
 }
-
 interface Props {
     setSelectedPokemon: any,
-    selectedPokemon: {
-        name: string
-    }
+    selectedPokemon: any,
     pokemon: {
         name: string,
-        sprites: {
-            front_default: string
-        },
-        stats: [{
-            base_stat: number,
-            stat: {
-                name: string,
-            }
-        }]
+        url: string,
     }
 }
 
@@ -47,7 +36,7 @@ export default function PokemonContainer({ pokemon, setSelectedPokemon, selected
     const [onePokemon, setOnePokemon] = useState<Pokemon | undefined>(undefined)
 
     const getOnePokemon = async () => {
-        const foundPokemon = await pokemonService.getOnePokemon(pokemon.name)
+        const foundPokemon = await pokemonService.getOnePokemon(pokemon.url)
         setOnePokemon(foundPokemon.data)
     }
 

@@ -8,11 +8,11 @@ class PokemonService {
         })
     }
 
-    getOnePokemon = (pokemonName: string) => {
-        return this.api.get(`/pokemon/${pokemonName}`)
+    getOnePokemon = (url: string) => {
+        return this.api.get(url)
     }
-    getTwenty = () => {
-        return this.api.get('/pokemon?offset=0&limit=40')
+    getTwenty = (offset: number) => {
+        return this.api.get(`/pokemon?offset=${offset}&limit=20`)
     }
 }
 

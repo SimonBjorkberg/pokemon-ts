@@ -1,34 +1,24 @@
 'use client'
 
-import { useEffect, useState } from "react";
-import pokemonService from "./utils/services/pokemonService";
-import PokemonContainer from "./components/PokemonContainer";
+import ScrollContainer from "./components/ScrollContainer";
+import { useState } from "react";
 
 interface Selected {
   name: string
 }
+interface Pokemon {
+  name: string
+}
 
 export default function Home() {
-  const [twentyPokemon, setTwentyPokemon] = useState([])
-  const [selectedPokemon, setSelectedPokemon] = useState<Selected>({})
-
-  const getTwentyPokemon = async () => {
-    const foundTwentyPokemon = await pokemonService.getTwenty()
-    setTwentyPokemon(foundTwentyPokemon.data.results)
-  }
-
-  useEffect(() => {
-    getTwentyPokemon()
-  }, [])
+  const [data, setData] = useState<Pokemon[] | []>([])
+  const [selectedPokemon, setSelectedPokemon] = useState<Selected | {}>({})
 
   return (
     <main className={`h-screen flex`}>
-      {twentyPokemon && <div className={`grid grid-cols-4 gap-4 mx-auto overflow-y-scroll h-[90%] px-4 py-4 my-auto transition-all duration-200`}>
-        {twentyPokemon.map((pokemon: any, index: number) => {
-          return <PokemonContainer key={index} pokemon={pokemon} setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} />
-        })}
+      <div className="h-full flex flex-col w-fit mx-auto">
+        <ScrollContainer data={data} setSelectedPokemon={setSelectedPokemon} selectedPokemon={selectedPokemon} setData={setData} />
       </div>
-      }
     </main>
   );
 }
