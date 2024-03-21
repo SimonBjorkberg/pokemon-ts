@@ -12,7 +12,7 @@ class PokemonService {
         return this.api.get(`/pokemon/${pokemonName}`)
     }
     getTwenty = () => {
-        return this.api.get('/pokemon?offset=20&limit=20')
+        return this.api.get('/pokemon?offset=0&limit=40')
     }
 }
 

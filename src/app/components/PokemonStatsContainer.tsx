@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 export default function PokemonStatsContainer({ stat }: any) {
     const [color, setColor] = useState("")
 
-    useEffect(() => {
-        switch (stat.stat.name) {
+    const getColor = (statName: string) => {
+        switch (statName) {
             case "hp":
                 setColor("bg-red-500")
                 break;
@@ -27,6 +27,10 @@ export default function PokemonStatsContainer({ stat }: any) {
                 setColor("bg-black-500")
                 break;
         }
+    }
+
+    useEffect(() => {
+        getColor(stat.stat.name)
     }, [])
 
     return (

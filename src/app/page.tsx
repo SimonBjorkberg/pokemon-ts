@@ -3,16 +3,11 @@
 import { useEffect, useState } from "react";
 import pokemonService from "./utils/services/pokemonService";
 import PokemonContainer from "./components/PokemonContainer";
+import SelectedPokemon from "./components/SelectedPokemon";
 
 export default function Home() {
-
-  const [pokemon, setPokemon] = useState({})
   const [twentyPokemon, setTwentyPokemon] = useState([])
-
-  const getPokemon = async () => {
-    const foundPokemon = await pokemonService.getOnePokemon("charmander")
-    setPokemon(foundPokemon.data)
-  }
+  const [selectedPokemon, setSelectedPokemon] = useState(undefined)
 
   const getTwentyPokemon = async () => {
     const foundTwentyPokemon = await pokemonService.getTwenty()
@@ -21,19 +16,17 @@ export default function Home() {
 
   useEffect(() => {
     getTwentyPokemon()
-    getPokemon()
   }, [])
 
-  console.log("twenty", twentyPokemon)
-
   return (
-    <main className="h-screen">
-      {twentyPokemon && <div className="grid grid-cols-4 gap-4 w-fit overflow-y-scroll h-[90%] px-4">
-        {twentyPokemon.map((pokemon) => {
-          return <PokemonContainer pokemon={pokemon} />
+    <main className="h-screen flex flex-row">
+      {twentyPokemon && <div className="grid grid-cols-4 gap-4 w-fit overflow-y-scroll h-[90%] mx-auto px-4 my-auto transition-all duration-200">
+        {twentyPokemon.map((pokemon: any, index: number) => {
+          return <PokemonContainer key={index} pokemon={pokemon} setSelectedPokemon={setSelectedPokemon} />
         })}
       </div>
       }
+      {selectedPokemon && <SelectedPokemon pokemon={selectedPokemon} />}
     </main>
   );
 }
