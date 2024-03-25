@@ -1,6 +1,5 @@
-export default function MovesModal({ showModal, setShowModal, move }: any) {
 
-
+export default function MovesModal({ showModal, setShowModal }: any) {
 
     return (
         <div className={`${showModal ? "relative" : "hidden"} z-10`} aria-labelledby="modal-title" role="dialog" aria-modal="true">

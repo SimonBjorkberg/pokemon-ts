@@ -6,7 +6,7 @@ export default function SelectedContainer({ selectedPokemon }: any) {
 
     return (
         <>
-            <div className={`border-2 rounded-tl-xl rounded-br-xl h-fit w-[90%] mx-auto mansalva-regular text-center flex-col p-4 bg-neutral-900 border-orange-300 ${selectedPokemon.name ? "flex" : "hidden"}`}>
+            <div className={`border-2 rounded-tl-xl rounded-br-xl h-fit w-[90%] mx-auto my-auto mansalva-regular text-center flex-col p-4 bg-neutral-900 border-orange-300 ${selectedPokemon.name ? "flex" : "hidden"}`}>
                 <section className="flex w-full justify-between ">
                     <div className="flex">
                         <img className="w-32" src={selectedPokemon.sprites?.front_default} alt="" />

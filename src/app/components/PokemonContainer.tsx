@@ -23,6 +23,7 @@ interface Pokemon {
         }
     ]
 }
+
 interface Props {
     setSelectedPokemon: any,
     selectedPokemon: any,
